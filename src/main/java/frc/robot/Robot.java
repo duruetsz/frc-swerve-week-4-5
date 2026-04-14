@@ -51,6 +51,15 @@ public class Robot extends TimedRobot {
                 m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose, llMeasurement.timestampSeconds);
             }
         }
+
+        var visionEst = LimelightHelpers.getBotPoseEstimate_wpiBlue("balta limelight");
+
+        if (visionEst.tagCount > 0) {
+            m_robotContainer.drivetrain.addVisionMeasurement(
+                visionEst.pose,
+                visionEst.timestampSeconds
+            );
+        }
     }
 
     @Override
