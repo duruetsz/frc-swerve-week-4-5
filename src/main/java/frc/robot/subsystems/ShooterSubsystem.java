@@ -14,7 +14,7 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 public class ShooterSubsystem extends SubsystemBase {
   private TalonFX shooterMotor;
   private TalonFXConfiguration shooterConfig = new TalonFXConfiguration();
-  var slot0 = shooterConfig.slot0;
+  var slot0 = shooterConfig.Slot0;
   public final VoltageOut shooterVoltageOut = new VoltageOut(0);
   
   public ShooterSubsystem() {
@@ -33,6 +33,13 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterConfig.slot0.kD = shooterD;
     shooterConfig.slot0.kS = shooterS;
     shooterConfig.slot0.kV = shooterV;
+
+    shooterConfig.CurrentLimits.SupplyCurrentLimit = shooterSupplyCurrentLimit;
+    shooterConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+
+    shooterConfig.CurrentLimits.StatorCurrentLimit = shooterStatorCurrentLimit;
+    shooterConfig.CurrentLimits.StatorCurrentLimitEnable = true;
+
     shooterMotor.getConfigurator().apply(shooterConfig);
   }
 

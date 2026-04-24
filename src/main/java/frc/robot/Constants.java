@@ -8,6 +8,8 @@ public class Constants {
         public static final double shooterD = 0.00;
         public static final double shooterS = 0.10;
         public static final double shooterV = 0.10;
+        public static final int shooterSupplyCurrentLimit = 40;
+        public static final int shooterStatorCurrentLimit = 30;
     }
 
     public class IntakeConstants {
