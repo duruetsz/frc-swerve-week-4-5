@@ -225,9 +225,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             });
         }
 
-        targetArea = LimelightHelpers.getTA("balta limelight");
-        targetX = LimelightHelpers.getTX("balta limelight");
-        targetY = LimelightHelpers.getTY("balta limelight");
+        targetArea = LimelightHelpers.getTA("limelight");
+        targetX = LimelightHelpers.getTX("limelight");
+        targetY = LimelightHelpers.getTY("limelight");
 
     }
 

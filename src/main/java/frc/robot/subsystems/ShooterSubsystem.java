@@ -7,14 +7,14 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.ShooterConstants.*;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.controls.VoltageOut;
+import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 
 
 public class ShooterSubsystem extends SubsystemBase {
   private TalonFX shooterMotor;
   private TalonFXConfiguration shooterConfig = new TalonFXConfiguration();
-  public final VoltageOut shooterVoltageOut = new VoltageOut(0);
+  public final VelocityVoltage shooterVV = new VelocityVoltage(0);
   
   public ShooterSubsystem() {
     shooterMotor = new TalonFX(kShooterMotorID);
@@ -25,7 +25,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void periodic() {
   }
 
-  public void configureHardware() {
+  private void configureHardware() {
     shooterConfig.Slot0.kP = kShooterP;
     shooterConfig.Slot0.kI = kShooterI;
     shooterConfig.Slot0.kD = kShooterD;
@@ -41,7 +41,11 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotor.getConfigurator().apply(shooterConfig);
   }
 
-  public void setShooterVoltage(double voltage) {
-    shooterMotor.setControl(shooterVoltageOut.withOutput(voltage));
+  public void shoot() {
+    shooterMotor.setControl(shooterVV.withVelocity(50)); // as rps
+  }
+
+  public void stopShooter() {
+    shooterMotor.stopMotor();
   }
 }

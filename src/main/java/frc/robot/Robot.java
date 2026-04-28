@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
             }
         }
 
-        var visionEst = LimelightHelpers.getBotPoseEstimate_wpiBlue("balta limelight");
+        var visionEst = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight");
 
         if (visionEst.tagCount > 0) {
             m_robotContainer.drivetrain.addVisionMeasurement(

@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.IntakeConstants.*;
@@ -12,9 +13,11 @@ import static frc.robot.Constants.IntakeConstants.*;
 public class IntakeSubsystem extends SubsystemBase {
   private TalonFX intakeMotor;
   private TalonFXConfiguration intakeConfig = new TalonFXConfiguration();
+  private VelocityVoltage intakeVV = new VelocityVoltage(0);
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
+    configureHardware();
     intakeMotor = new TalonFX(kIntakeMotorID);
   }
 
@@ -24,5 +27,25 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private void configureHardware() {
     intakeConfig.Slot0.kP = kIntakeP;
+    intakeConfig.Slot0.kI = kIntakeI;
+    intakeConfig.Slot0.kD = kIntakeD;
+    intakeConfig.Slot0.kS = kIntakeS;
+    intakeConfig.Slot0.kV = kIntakeV;
+
+    intakeConfig.CurrentLimits.SupplyCurrentLimit = kIntakeSupplyCurrentLimit;
+    intakeConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+
+    intakeConfig.CurrentLimits.StatorCurrentLimit = kIntakeStatorCurrentLimit;
+    intakeConfig.CurrentLimits.StatorCurrentLimitEnable = true;
+
+    intakeMotor.getConfigurator().apply(intakeConfig);
+  }
+
+  public void intake() {
+    intakeMotor.setControl(intakeVV.withVelocity(35));
+  }
+
+  public void stopIntake() {
+    intakeMotor.stopMotor();
   }
 }

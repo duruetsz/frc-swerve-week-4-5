@@ -177,10 +177,6 @@ public class TunerConstants {
     private static final Distance kBackRightXPos = Inches.of(-10);
     private static final Distance kBackRightYPos = Inches.of(-10);
 
-    // Shooter
-    // TODO: diğer idleri de yaz veya biraz düşün bi can hattı nası olcak
-    // TODO: bi de kodu yaz
-
 
     public static final SwerveModuleConstants<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> FrontLeft =
         ConstantCreator.createModuleConstants(
