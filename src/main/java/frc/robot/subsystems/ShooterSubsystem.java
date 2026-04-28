@@ -14,13 +14,11 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 public class ShooterSubsystem extends SubsystemBase {
   private TalonFX shooterMotor;
   private TalonFXConfiguration shooterConfig = new TalonFXConfiguration();
-  var slot0 = shooterConfig.Slot0;
   public final VoltageOut shooterVoltageOut = new VoltageOut(0);
   
   public ShooterSubsystem() {
-    shooterMotor = new TalonFX(shooterMotorID);
-    
-    
+    shooterMotor = new TalonFX(kShooterMotorID);
+    configureHardware();
   }
 
   @Override
@@ -28,16 +26,16 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void configureHardware() {
-    shooterConfig.slot0.kP = shooterP;
-    shooterConfig.slot0.kI = shooterI;
-    shooterConfig.slot0.kD = shooterD;
-    shooterConfig.slot0.kS = shooterS;
-    shooterConfig.slot0.kV = shooterV;
+    shooterConfig.Slot0.kP = kShooterP;
+    shooterConfig.Slot0.kI = kShooterI;
+    shooterConfig.Slot0.kD = kShooterD;
+    shooterConfig.Slot0.kS = kShooterS;
+    shooterConfig.Slot0.kV = kShooterV;
 
-    shooterConfig.CurrentLimits.SupplyCurrentLimit = shooterSupplyCurrentLimit;
+    shooterConfig.CurrentLimits.SupplyCurrentLimit = kShooterSupplyCurrentLimit;
     shooterConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
 
-    shooterConfig.CurrentLimits.StatorCurrentLimit = shooterStatorCurrentLimit;
+    shooterConfig.CurrentLimits.StatorCurrentLimit = kShooterStatorCurrentLimit;
     shooterConfig.CurrentLimits.StatorCurrentLimitEnable = true;
 
     shooterMotor.getConfigurator().apply(shooterConfig);
