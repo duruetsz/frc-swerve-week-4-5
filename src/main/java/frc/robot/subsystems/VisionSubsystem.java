@@ -5,13 +5,27 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.LimelightHelpers;
 
 public class VisionSubsystem extends SubsystemBase {
-  /** Creates a new VisionSubsystem. */
+  public boolean tv = LimelightHelpers.getTV("balta limelight");
+  public double tx = LimelightHelpers.getTX("balta limelight");
+  public double ty = LimelightHelpers.getTY("balta limelight");
+  public double ta = LimelightHelpers.getTA("balta limelight");
+
   public VisionSubsystem() {}
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+  }
+
+  public boolean isSeeingTagID(double TargetTagID) {
+    if (LimelightHelpers.getTV("balta limelight")==true) {
+      double currentID = LimelightHelpers.getFiducialID("balta limelight");
+      return TargetTagID==currentID;
+    }
+    else {
+      return false;
+    }
   }
 }

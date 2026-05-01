@@ -17,8 +17,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
-    configureHardware();
     intakeMotor = new TalonFX(kIntakeMotorID);
+    configureHardware();
+    intakeMotor.getConfigurator().apply(intakeConfig);
   }
 
   @Override
@@ -37,8 +38,6 @@ public class IntakeSubsystem extends SubsystemBase {
 
     intakeConfig.CurrentLimits.StatorCurrentLimit = kIntakeStatorCurrentLimit;
     intakeConfig.CurrentLimits.StatorCurrentLimitEnable = true;
-
-    intakeMotor.getConfigurator().apply(intakeConfig);
   }
 
   public void intake() {

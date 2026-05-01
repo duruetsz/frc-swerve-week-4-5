@@ -1,5 +1,11 @@
 package frc.robot;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import edu.wpi.first.math.geometry.Pose2d;
+
+
 public class Constants {
     public class ShooterConstants {
         public static final int kShooterMotorID = 9;
@@ -23,4 +29,7 @@ public class Constants {
         public static final int kIntakeStatorCurrentLimit = 40;
     }
 
+    public class FieldConstants {
+        public final Map<String, Pose2d> aprilTagMap = new HashMap<>(); // çizimlerden baktım hiç emin değilim
+    }
 }
