@@ -20,7 +20,7 @@ public class VisionSubsystem extends SubsystemBase {
   }
 
   public boolean isSeeingTagID(double TargetTagID) {
-    if (LimelightHelpers.getTV("balta limelight")==true) {
+    if (LimelightHelpers.getTV("balta limelight")) {
       double currentID = LimelightHelpers.getFiducialID("balta limelight");
       return TargetTagID==currentID;
     }
